@@ -9,7 +9,7 @@ public class Main {
         ContaCorrente cc = new ContaCorrente(venilton, geradorDeNumero);
         ContaPoupanca poupanca = new ContaPoupanca(venilton, geradorDeNumero);
 
-        cc.depositar(1400);
+        cc.depositar(1600);
         cc.transferir(900, poupanca);
 
         cc.imprimirExtrato();
