@@ -1,16 +1,27 @@
-// Interface para operações de conta
+package com.bancodigital;
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
 
+// Interface para operações de conta
 interface IConta {
     void sacar(double valor);
+
     void depositar(double valor);
+
     void transferir(double valor, IConta contaDestino);
+
     void imprimirExtrato();
 }
 
 // Classe abstrata Conta implementando a interface IConta
+@Getter
+@Setter
+@ToString
 abstract class Conta implements IConta {
     private static final int AGENCIA_PADRAO = 1;
     private static int SEQUENCIAL = 1;
@@ -23,15 +34,15 @@ abstract class Conta implements IConta {
     protected double limiteEmprestimo;
     protected double valorEmprestado;
 
-  // Construtor da classe Conta - modificado para iniciar o saldo como 0
-  public Conta(Cliente cliente) {
-    this.agencia = Conta.AGENCIA_PADRAO;
-    this.numero = SEQUENCIAL++;
-    this.cliente = cliente;
-    this.saldo = 0.0; // Inicializa o saldo como 0
-    this.limiteEmprestimo = 0; 
-    this.valorEmprestado = 0; 
-}
+    // Construtor da classe Conta - modificado para iniciar o saldo como 0
+    public Conta(Cliente cliente) {
+        this.agencia = Conta.AGENCIA_PADRAO;
+        this.numero = SEQUENCIAL++;
+        this.cliente = cliente;
+        this.saldo = 0.0; // Inicializa o saldo como 0
+        this.limiteEmprestimo = 0;
+        this.valorEmprestado = 0;
+    }
 
     // Métodos para saque, depósito e transferência
     @Override
@@ -63,22 +74,26 @@ abstract class Conta implements IConta {
     }
 
     @Override
-    public void transferir(double valor, IConta contaDestino) {
-        if (valor <= 0) {
-            System.out.println("Erro: Valor de transferência inválido. Insira um valor positivo.");
-            return;
-        }
-
-        if (valor > saldo) {
-            System.out.println("Erro: Saldo insuficiente para transferir.");
-            return;
-        }
-
-        this.sacar(valor);
-        contaDestino.depositar(valor);
-        System.out.println("Transferência realizada com sucesso!");
+public void transferir(double valor, IConta contaDestino) {
+    if (valor <= 0) {
+        System.out.println("Erro: Valor de transferência inválido. Insira um valor positivo.");
+        return;
     }
 
+    if (valor > saldo) {
+        System.out.println("Erro: Saldo insuficiente para transferir.");
+        return;
+    }
+
+    // Remova a chamada para sacar()
+    // this.sacar(valor); 
+
+    // Realize o débito diretamente
+    this.saldo -= valor;
+    contaDestino.depositar(valor);
+    adicionarTransacao("Transferência", -valor); 
+    System.out.println("Transferência realizada com sucesso!");
+}
     // Método para realizar um Pix
     public void realizarPix(double valor, int numeroContaDestino, Banco bancoDestino) {
         if (valor <= 0) {
@@ -102,9 +117,9 @@ abstract class Conta implements IConta {
         // --- Manipulação direta das transações e saldos ---
         this.saldo -= valor;
         contaDestino.saldo += valor;
-        
-        this.adicionarTransacao("Pix - Enviado", -valor); 
-        contaDestino.adicionarTransacao("Pix - Recebido", valor); 
+
+        this.adicionarTransacao("Pix - Enviado", -valor);
+        contaDestino.adicionarTransacao("Pix - Recebido", valor);
 
         System.out.println("Pix realizado com sucesso para " + contaDestino.cliente.getNome() + "!");
     }
@@ -125,19 +140,6 @@ abstract class Conta implements IConta {
         this.valorEmprestado += valor;
         adicionarTransacao("Empréstimo", valor);
         System.out.println("Empréstimo realizado com sucesso!");
-    }
-
-    // Getters para agência, número e saldo
-    public int getAgencia() {
-        return agencia;
-    }
-
-    public int getNumero() {
-        return numero;
-    }
-
-    public double getSaldo() {
-        return saldo;
     }
 
     // Método para imprimir informações básicas da conta

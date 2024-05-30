@@ -1,6 +1,15 @@
+package com.bancodigital;
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
+@Setter
+@ToString
 // Classe Banco
 public class Banco {
     private String nome;
@@ -9,11 +18,6 @@ public class Banco {
     // Construtor da classe Banco
     public Banco(String nome) {
         this.nome = nome;
-    }
-
-    // Getter para o nome do banco
-    public String getNome() {
-        return nome;
     }
 
     // Método para adicionar uma conta ao banco
@@ -34,15 +38,5 @@ public class Banco {
             }
         }
         return null;
-    }
-
-    // Getter para a lista de contas do banco
-    public List<Conta> getContas() {
-        return contas;
-    }
-
-    // Setter para a lista de contas do banco
-    public void setContas(List<Conta> contas) {
-        this.contas = contas;
     }
 }
