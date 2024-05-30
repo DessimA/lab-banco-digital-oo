@@ -14,9 +14,10 @@ Este projeto é uma simulação simplificada de um sistema bancário digital em 
 ## Funcionalidades ✨
 
 * **Gerenciamento de clientes:** Cadastro de novos clientes com nome.
-* **Contas correntes e poupança:** Abertura de contas para clientes.
-* **Operações bancárias:** Depósito, saque e transferência entre contas.
-* **Extrato detalhado:** Histórico de transações e saldo da conta.
+* **Contas correntes e poupança:** Abertura de contas para clientes, cada uma com limite de empréstimo diferenciado.
+* **Operações bancárias:** Depósito, saque, transferência entre contas e **empréstimo**.
+* **Funcionalidade Pix:** Transferências instantâneas entre contas usando o número da conta e o nome do banco.
+* **Extrato detalhado:** Histórico de transações completo e saldo da conta, com informações detalhadas sobre cada operação, incluindo **Pix** e **empréstimos**.
 * **Tratamento de erros:** Mensagens claras para operações inválidas (saldo insuficiente, valores inválidos, etc.).
 
 ## Requisitos do Sistema 💻
@@ -38,3 +39,9 @@ Este projeto é uma simulação simplificada de um sistema bancário digital em 
    ```bash
    java Main
    ```
+
+
+**Mudanças:**
+
+- **Funcionalidades:** Adicionadas as funcionalidades de "empréstimo" e "Funcionalidade Pix".
+- **Detalhes:** Incluídos detalhes sobre os limites de empréstimo por tipo de conta, informações detalhadas sobre cada operação no extrato e destaque para as operações de Pix e empréstimo. 
