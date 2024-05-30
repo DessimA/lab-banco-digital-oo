@@ -1,5 +1,4 @@
-// Classe para representar uma transação
-public class Transacao {
+class Transacao {
     private String tipo;
     private double valor;
     private double saldo;

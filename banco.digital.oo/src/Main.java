@@ -1,27 +1,32 @@
-// Classe principal
 public class Main {
     public static void main(String[] args) {
-        // Criando um novo cliente
-        Cliente cliente = new Cliente("João da Silva");
+        // Criando um novo banco
+        Banco meuBanco = new Banco("Meu Banco");
 
-        // Criando uma conta corrente e uma conta poupança para o cliente
-        ContaCorrente cc = new ContaCorrente(cliente);
-        ContaPoupanca poupanca = new ContaPoupanca(cliente);
+        // Criando novos clientes
+        Cliente cliente1 = new Cliente("João da Silva");
+        Cliente cliente2 = new Cliente("Maria da Conceição");
 
-        // Testando operações com valores válidos
-        cc.depositar(100);
-        cc.transferir(50, poupanca);
-        cc.sacar(20);
+        // Criando contas para os clientes
+        ContaCorrente cc1 = new ContaCorrente(cliente1);
+        ContaPoupanca poupanca1 = new ContaPoupanca(cliente1);
+        ContaCorrente cc2 = new ContaCorrente(cliente2);
 
-        // Testando operações com valores inválidos
-        cc.sacar(1000); // Saldo insuficiente
-        cc.transferir(100, poupanca); // Saldo insuficiente
-        cc.depositar(-50); // Valor de depósito inválido
-        cc.sacar(-20); // Valor de saque inválido
-        cc.transferir(-30, poupanca); // Valor de transferência inválido
+        // Adicionando as contas ao banco
+        meuBanco.adicionarConta(cc1);
+        meuBanco.adicionarConta(poupanca1);
+        meuBanco.adicionarConta(cc2);
+
+        // Realizando operações bancárias
+        cc1.depositar(100);
+        cc1.transferir(50, poupanca1);
+        cc1.sacar(20);
+        cc1.realizarPix(30, cc2.getNumero(), meuBanco);
+        cc1.solicitarEmprestimo(200);
 
         // Imprimindo os extratos das contas
-        cc.imprimirExtrato();
-        poupanca.imprimirExtrato();
+        cc1.imprimirExtrato();
+        poupanca1.imprimirExtrato();
+        cc2.imprimirExtrato();
     }
 }

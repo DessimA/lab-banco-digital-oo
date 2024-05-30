@@ -1,5 +1,4 @@
-// Classe Cliente
-public class Cliente {
+class Cliente {
     private String nome;
 
     // Construtor da classe Cliente
