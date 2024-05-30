@@ -1,18 +1,40 @@
-## Getting Started
+# Banco Digital OO 🏦
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+## Descrição 📝
 
-## Folder Structure
+Este projeto é uma simulação simplificada de um sistema bancário digital em Java. Ele permite realizar operações básicas, como:
 
-The workspace contains two folders by default, where:
+* **Criar clientes:** 🧑 Adicione novos clientes ao banco com seus respectivos nomes.
+* **Abrir contas:** 🚪 Crie contas corrente e poupança para os clientes.
+* **Depositar:** 💰 Adicione fundos às contas.
+* **Sacar:** 💸 Retire dinheiro das contas (respeitando o saldo disponível).
+* **Transferir:** ➡️ Transfira fundos entre contas.
+* **Imprimir extrato:** 📑 Visualize o histórico de transações e o saldo atual das contas.
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+## Funcionalidades ✨
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+* **Gerenciamento de clientes:** Cadastro de novos clientes com nome.
+* **Contas correntes e poupança:** Abertura de contas para clientes.
+* **Operações bancárias:** Depósito, saque e transferência entre contas.
+* **Extrato detalhado:** Histórico de transações e saldo da conta.
+* **Tratamento de erros:** Mensagens claras para operações inválidas (saldo insuficiente, valores inválidos, etc.).
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+## Requisitos do Sistema 💻
 
-## Dependency Management
+* **Java Development Kit (JDK):** Certifique-se de ter o Java JDK instalado em sua máquina.
+* **IDE (opcional):** Uma IDE como Eclipse ou IntelliJ IDEA pode facilitar o desenvolvimento, mas não é obrigatória.
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+## Como Executar 🚀
+
+1. **Clone o repositório:**
+   ```bash
+   git clone https://github.com/DessimA/lab-banco-digital-oo.git
+   ```
+2. **Compile o código:**
+   ```bash
+   javac *.java
+   ```
+3. **Execute a aplicação:**
+   ```bash
+   java Main
+   ```
