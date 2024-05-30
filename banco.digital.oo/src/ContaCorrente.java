@@ -1,63 +1,35 @@
 import java.util.ArrayList;
 import java.util.List;
 
+// Classe ContaCorrente extendendo Conta
 public class ContaCorrente extends Conta {
+    private List<Transacao> transacoes;
 
-    List<Extrato> extratos = new ArrayList<>();
-
-    public ContaCorrente(Cliente cliente, IGeradorDeNumero geradorDeNumero) {
-        super(cliente, geradorDeNumero);
+    // Construtor da classe ContaCorrente
+    public ContaCorrente(Cliente cliente) {
+        super(cliente);
+        this.transacoes = new ArrayList<>();
     }
 
+    // Método para imprimir o extrato da conta corrente
     @Override
-    public String imprimirExtrato() { // Retorna String
-        StringBuilder sb = new StringBuilder();
-        sb.append("=== Extrato Conta Corrente ===\n");
-        sb.append(imprimirInformacoesBasicas()); // Use o método existente
-
-        for (Extrato extrato : extratos) {
-            sb.append(extrato.toString()).append("\n");
-        }
-        return sb.toString(); // Retorna a string construída
+    public void imprimirExtrato() {
+        System.out.println("=== Extrato Conta Corrente ===");
+        imprimirInformacoesBasicas();
+        imprimirTransacoes();
     }
 
-    public void adicionarExtrato(Extrato extrato) {
-        extrato.setTipo("Crédito");
-        extrato.setValor(this.saldo);
-        extrato.setData("18/11/2023");
-        extrato.setDescricao("Depósito Inicial");
-        extrato.setSaldo(this.saldo);
+    // Método para adicionar uma nova transação
+    @Override
+    protected void adicionarTransacao(String tipo, double valor) {
+        this.transacoes.add(new Transacao(tipo, valor, this.saldo));
+    }
 
-        extrato.setTipo("Débito");
-        extrato.setValor(this.saldo);
-        extrato.setData("19/11/2023");
-        extrato.setDescricao("Saque");
-        extrato.setSaldo(this.saldo);
-
-        extrato.setTipo("Crédito");
-        extrato.setValor(this.saldo);
-        extrato.setData("20/11/2023");
-        extrato.setDescricao("Transferência");
-        extrato.setSaldo(this.saldo);
-
-        extrato.setTipo("Débito");
-        extrato.setValor(this.saldo);
-        extrato.setData("21/11/2023");
-        extrato.setDescricao("Pagamento");
-        extrato.setSaldo(this.saldo);
-
-        extrato.setTipo("Crédito");
-        extrato.setValor(this.saldo);
-        extrato.setData("22/11/2023");
-        extrato.setDescricao("Depósito");
-        extrato.setSaldo(this.saldo);
-
-        extrato.setTipo("Débito");
-        extrato.setValor(this.saldo);
-        extrato.setData("23/11/2023");
-        extrato.setDescricao("Transferência");
-        extrato.setSaldo(this.saldo);
-
-        extratos.add(extrato);
+    // Método auxiliar para imprimir as transações
+    private void imprimirTransacoes() {
+        for (Transacao transacao : transacoes) {
+            System.out.println(transacao);
+        }
+        System.out.println();
     }
 }

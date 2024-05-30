@@ -1,19 +1,27 @@
+// Classe principal
 public class Main {
-
     public static void main(String[] args) {
-        Cliente venilton = new Cliente("Venilton");
+        // Criando um novo cliente
+        Cliente cliente = new Cliente("João da Silva");
 
-        IGeradorDeNumero geradorDeNumero = new GeradorDeNumeroConta();
+        // Criando uma conta corrente e uma conta poupança para o cliente
+        ContaCorrente cc = new ContaCorrente(cliente);
+        ContaPoupanca poupanca = new ContaPoupanca(cliente);
 
-        // Passar o gerador para o construtor:
-        ContaCorrente cc = new ContaCorrente(venilton, geradorDeNumero);
-        ContaPoupanca poupanca = new ContaPoupanca(venilton, geradorDeNumero);
+        // Testando operações com valores válidos
+        cc.depositar(100);
+        cc.transferir(50, poupanca);
+        cc.sacar(20);
 
-        cc.depositar(1600);
-        cc.transferir(900, poupanca);
+        // Testando operações com valores inválidos
+        cc.sacar(1000); // Saldo insuficiente
+        cc.transferir(100, poupanca); // Saldo insuficiente
+        cc.depositar(-50); // Valor de depósito inválido
+        cc.sacar(-20); // Valor de saque inválido
+        cc.transferir(-30, poupanca); // Valor de transferência inválido
 
+        // Imprimindo os extratos das contas
         cc.imprimirExtrato();
         poupanca.imprimirExtrato();
-
     }
 }

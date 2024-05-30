@@ -1,12 +1,15 @@
+// Classe ContaPoupanca extendendo Conta
 public class ContaPoupanca extends Conta {
-
-    public ContaPoupanca(Cliente cliente, IGeradorDeNumero geradorDeNumero) {
-        super(cliente, geradorDeNumero);
+    // Construtor da classe ContaPoupanca
+    public ContaPoupanca(Cliente cliente) {
+        super(cliente);
     }
 
+    // Método para imprimir o extrato da conta poupança
     @Override
-    public String imprimirExtrato() {
+    public void imprimirExtrato() {
         System.out.println("=== Extrato Conta Poupanca ===");
-        return imprimirInformacoesBasicas();
+        imprimirInformacoesBasicas();
+        System.out.println();
     }
 }
